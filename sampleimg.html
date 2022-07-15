@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    
+
+    <label >image name </label> <input type="text" id="namebox"> <label id="extlab"></label><br><br>
+    <img id="myimg"> <label id="upprogress"></label> <br><br>
+
+    <input type="file" id="asdf">
+
+    <div ><img id="imaging"></div>
+    
+    <button id="Upbtn"> upload img </button>
+
+
+
+
+   
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyBFaU1oIptFGVNMgm1NYuV8-95_rXa8MKY",
+          authDomain: "prodform-10f24.firebaseapp.com",
+          databaseURL: "https://prodform-10f24-default-rtdb.firebaseio.com",
+          projectId: "prodform-10f24",
+          storageBucket: "prodform-10f24.appspot.com",
+          messagingSenderId: "1088253126655",
+          appId: "1:1088253126655:web:b526bcbfd91ff5088729ca"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import {getStorage, ref as sRef, uploadBytesResumable,getDownloadURL}
+        from "https://www.gstatic.com/firebasejs/9.6.7/firebase-storage.js"
+
+
+        import{getDatabase, ref, set, child, get, update, remove}
+        from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
+        const realdb= getDatabase();
+
+        const fileInput = document.getElementById('asdf');// where the image will be stored
+
+//------------------------------------UPLOAD IMG--------------------------------------
+        document.getElementById('Upbtn').addEventListener('click', UploadProcess);
+
+            async function UploadProcess(){
+            var ImgToUpload=fileInput.files[0];
+
+
+            const storage = getStorage(); 
+
+            const StorageRef = sRef(storage,"absasd/asdf"+"asdfasdfjkl;");
+
+
+            const UploadTask = uploadBytesResumable(StorageRef,ImgToUpload).then(()=>{
+              alert("ok");
+
+            
+            }).then((snapshot)=>{ 
+
+              getDownloadURL(StorageRef).then((downloadURL)=>{
+
+              
+              linking(downloadURL);
+              });
+            }
+            );
+
+          }
+
+//------------------------------------LINK TO FIREBASE--------------------------------------//
+
+function linking(URL){
+
+  var naming=fileInput.files[0].name;
+
+  var only_name=naming.split('.')[0];
+  
+
+  set(ref(realdb,"Imageslinks/"+only_name ),{
+    Imgname: naming,
+    ImgURL:URL
+  })
+
+  gettingurl();
+
+}
+
+
+
+//------------------------------------Retrieve the img now--------------------------------------//
+      
+
+function gettingurl (URL){
+  var naming=fileInput.files[0].name;
+  var only_naming=naming.split('.')[0];
+
+  var dbRef=ref(realdb);
+
+  get(child(dbRef,"Imageslinks/"+only_naming)).then((snapshot)=>{
+    if(snapshot.exists()){
+      document.getElementById("imaging").src=snapshot.val().ImgURL;
+    }
+  });
+
+}
+
+      </script>
+</body>
+</html>

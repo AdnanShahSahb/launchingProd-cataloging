@@ -1,0 +1,99 @@
+
+      
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        
+      }
+      
+      body{
+        background-color: gray;
+      }
+
+      h2{
+        text-align: center; 
+        margin: 50px auto;
+        width: 80%;
+        height: 60px;
+        background-color: black; 
+        
+        color: aliceblue;
+
+
+      }
+      
+      
+      /* Create three equal columns that floats next to each other */
+      .row {
+        display: grid;
+        grid-template-columns:repeat(3, 1fr);
+        padding: 10px;
+        width: 80%;
+        margin: auto;
+        background-color: black;
+        color: wheat;
+      }
+      .column{
+      
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 2ch;
+        border: 1px solid rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        margin:20px;
+        background-color: rgb(44, 42, 42);
+
+
+      }
+      
+      img{
+        height: 150px;
+        width: 100%;
+        border: solid;
+        margin:20px 0px ;
+      }
+      
+      .column button{
+        bottom:0px;
+        width: 100%;
+        margin-top: 20px;
+        border-radius: 2ch;
+        height: 50px;
+      
+      }
+      
+      p{
+        width: 100%;
+        display: inline-block;
+    }
+      
+      @media screen and (max-width: 600px) {
+        .row {
+          
+        display: grid;
+        grid-template-columns: auto ;
+        }
+      }
+
+      .spec{
+        background-color: rgb(44, 42, 42);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          border-radius: 2ch;
+          margin: 10px 0px;
+          padding: 10px 0px;
+          color: wheat;
+          
+
+      }
+
+      span{
+        font-weight: bold;
+        float: right;
+
+      }
+
+      .desc_css{
+        height: 50px;
+        overflow-y: scroll;
+      }

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="launch_phone/style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+        <form id="actual_form">
+            <div class="form-group" id="form_input">
+                <label > Product Name: </label>
+                <input type="text" id="Pname"> 
+
+
+                
+                
+                <label > Product Specification: </label>    <br>
+                  
+                <div class="prod_spec">
+                    <input type="text" placeholder="processor" id="processor">
+
+                    
+                    <input type="text" placeholder="Extended Storage? (YES/NO)" id="extended"> 
+                    
+                    <select class="form-control" id="ram">
+                        <option value="" disabled selected hidden > RAM </option>
+                        <option > 2GB</option>
+                        <option > 3GB</option>
+                        <option > 4GB</option>
+                        <option > 8GB</option>
+                    </select>
+
+                    <select class="form-control" id="internal">
+                        <option value="" disabled selected hidden > Internal Storage </option>
+                        <option > 64GB</option>
+                        <option > 32GB</option>
+                    </select>
+                
+                </div>
+                
+                <label > Product Color </label>
+                <select class="form-control" id="prod_col">
+                    <option >
+                        
+                    </option>
+                    <option >
+                        Blue
+                    </option>
+                    <option >
+                        black
+                    </option>
+                    <option >
+                        white
+                    </option>
+                    <option >
+                        gold
+                    </option>
+                </select>
+
+                <label >Product Quantity</label>
+                <input class="form-control" type="number" id="prod_quan" >
+
+                <label >Additional Description</label>
+                <input type="text" id="add_desc">
+                
+                <br>
+                <label> Image of Product </label>
+                <br>
+                <input type="file" accept="image/*" onchange="pic()" id="input_image">      <div id="img"> <img id="image" ></div>
+                <br><br>
+                <label > Price of Product </label>
+                <input type="text" class="price" placeholder="Enter here" id="price">
+
+                <button class="btn btn-outline-secondary" id="butt" >Add to sell</button>
+
+            </div>
+        </form>
+    </div>
+    
+    
+    <script src="launch_phone/form.js"></script>
+    
+    
+    <script type="module">  
+
+        
+        import {sub}
+        from "./launch_phone/data_upload.js";
+
+        import {UploadProcess}
+        from "./launch_phone/img_upload.js";
+
+        
+
+        document.getElementById('butt').addEventListener('click',myfunc);
+
+
+    function myfunc(){
+        event.preventDefault();
+
+    validation();
+    sub();
+    UploadProcess();
+
+
+}
+
+        
+
+
+            
+    </script>
+
+    
+
+
+    <!-- Optional JavaScript -->
+
+    <script src="launch_phone/img_upload.js" type="module"></script>
+    <script src="launch_phone/data_upload.js" type="module"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+</body>
+</html>

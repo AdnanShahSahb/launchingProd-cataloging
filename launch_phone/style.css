@@ -1,0 +1,53 @@
+
+
+ :focus{
+     outline: none;     /*An outline is a line that is drawn around elements, outside the borders, to make the element "stand out". */
+ }         
+  
+  
+  
+  input[type=text] {
+    min-width: 100%;
+    border: 0;
+    border-bottom: 1px solid #929fba;
+    margin-bottom: 50px;
+  } 
+  
+  
+
+  .container {
+      padding-bottom: 40px;
+      margin: 20px;
+    
+  }
+
+  form{
+    width: 70%;
+    margin: 10px auto;
+    border: 0.5px solid;
+    padding: 20px;
+    font-weight: bold;
+  }
+
+  .prod_spec{
+    display:grid; grid-template-columns:repeat(2,1fr);
+    grid-gap: 20px;
+
+    margin: 20px auto ;
+  }
+
+  .form-group .price{
+      background-color: #a6aba7;
+      padding: 10px;
+      
+  }
+
+  #img {
+    height: 90px; width: 180px;
+    border:black solid 5px;
+    margin: auto; margin-top: -60px; 
+  }
+
+  #img img {
+    height: 100%; width: 100%;
+  }
