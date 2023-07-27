@@ -1,27 +1,29 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>catalog</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="cat.css">
+<head>
+  <title>catalog</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="cat.css">
 
 
 </head>
 
 <body>
-  
-  
 
-    <h2>Product Catalog</h2>
 
-    <div class="row" id="prod_list">
-      
-      <!-- <div class="column" >
+
+  <h2>Product Catalog</h2>
+
+  <div class="row" id="prod_list">
+
+    <!-- <div class="column" >
         
         <img src="/images/a20.png" >
 
@@ -42,218 +44,84 @@
         <button class="btn-dark b">Add to Cart</button>
       </div> -->
 
-      
-    
-    </div>
-      
 
 
-<!--Firebase Libraries-->
+  </div>
 
 
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyBFaU1oIptFGVNMgm1NYuV8-95_rXa8MKY",
-    authDomain: "prodform-10f24.firebaseapp.com",
-    databaseURL: "https://prodform-10f24-default-rtdb.firebaseio.com",
-    projectId: "prodform-10f24",
-    storageBucket: "prodform-10f24.appspot.com",
-    messagingSenderId: "1088253126655",
-    appId: "1:1088253126655:web:b526bcbfd91ff5088729ca"
-  };
+  <!--Firebase Libraries-->
 
-  // Initialize Firebase
-  const firebase = initializeApp(firebaseConfig);
 
-   import {getDatabase, ref, child, onValue, get,set}
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBFaU1oIptFGVNMgm1NYuV8-95_rXa8MKY",
+      authDomain: "prodform-10f24.firebaseapp.com",
+      databaseURL: "https://prodform-10f24-default-rtdb.firebaseio.com",
+      projectId: "prodform-10f24",
+      storageBucket: "prodform-10f24.appspot.com",
+      messagingSenderId: "1088253126655",
+      appId: "1:1088253126655:web:b526bcbfd91ff5088729ca"
+    };
+
+    // Initialize Firebase
+    const firebase = initializeApp(firebaseConfig);
+
+    import { getDatabase, ref, child, onValue, get, set }
       from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js"
-      const therealdb= getDatabase();
+    const therealdb = getDatabase();
 
 
-var img__NAME, img__URL,asdf,zxcv;  
+    var img__NAME, img__URL, asdf, zxcv;
 
 
-  //---------------retrieve images from the firebase database -----------------------------------------------//
+    //---------------retrieve images from the firebase database -----------------------------------------------//
 
-  function retr(){
-  console.log("kuchhoa")
+    function retr() {
+      console.log("kuchhoa")
 
-const dbRef1=ref(therealdb);
+      const dbRef1 = ref(therealdb);
 
-get(child(dbRef1,"images_WithLinks")).then((snapshot)=>{
-
-
-             var thedata=[];
-            snapshot.forEach(childSnapshot=>{
-            thedata.push(childSnapshot.val());
-
-            console.log(childSnapshot.val().imgURL)
-
-            img__URL=childSnapshot.val().imgURL;
-            img__NAME=childSnapshot.val().imgNAME;
-
-            document.createElement('img');
-
-            
-            asdf=document.getElementById('img_prod').src=img__URL;
-            zxcv=document.getElementById('img_prodname').value=img__NAME;
+      get(child(dbRef1, "images_WithLinks")).then((snapshot) => {
 
 
-            let imgs=document.createElement('img');
-            
-            imgs.innerHTML=asdf;
-            imgs.setAttribute('id','img_prod');
+        var thedata = [];
+        snapshot.forEach(childSnapshot => {
+          thedata.push(childSnapshot.val());
 
-            document.getElementById('column').append(imgs.innerHTML);
+          console.log(childSnapshot.val().imgURL)
 
+          img__URL = childSnapshot.val().imgURL;
+          img__NAME = childSnapshot.val().imgNAME;
 
-            });
-  
-})
-
-}
-
-function add_to_list(name,ram,processor,internal,prod_quan,price,ext_stor,prod_col,desc){
-        
+          document.createElement('img');
 
 
+          asdf = document.getElementById('img_prod').src = img__URL;
+          zxcv = document.getElementById('img_prodname').value = img__NAME;
 
 
+          let imgs = document.createElement('img');
 
+          imgs.innerHTML = asdf;
+          imgs.setAttribute('id', 'img_prod');
 
+          document.getElementById('column').append(imgs.innerHTML);
 
-
-
-
-
-  // var list=document.getElementById('prod_list');  
-
-  // var _prod=document.createElement('div'); 
-
-  // var _image=document.createElement('img'); 
-
-  // var _name=document.createElement('h3');
-  // var _div1=document.createElement('div');
-
-  // var _ram=document.createElement('p');
-  // var _processor=document.createElement('p');
-  // var _inter_stor=document.createElement('p');
-  // var _prod_quan=document.createElement('p');
-  // var _price=document.createElement('h4');
-  // var _ext_stor=document.createElement('p');
-  // var _prod_col=document.createElement('p');
-  // var _desc=document.createElement('p');
-
-  // _name.innerHTML='Name: '+ name;
-  // _ram.innerHTML='Ram: '+ ram;
-  // _processor.innerHTML='Processor: '+ processor;
-  // _inter_stor.innerHTML='Internal Storage: '+ internal;
-  // _prod_quan.innerHTML='Product quantity: '+ prod_quan;
-  // _price.innerHTML='Price: '+ _price;
-  // _ext_stor.innerHTML='External Storage: '+ ext_stor;
-  // _prod_col.innerHTML='Product Color: '+ prod_col;
-  // _desc.innerHTML='Description: '+ desc;
-
-  console.log(img__NAME+img__URL)
-  
-  var prods= 
-              '<img src="/images/a20.png" id="img_prod">'+
-              '<label id="img_prodname"></label>'+
-              '<p> Name: <span>'+ name +' </span> </p> <br/>'+
-
-              '<div class="spec"> Product Specification  <br <br/><br/>'+
-              '<p> RAM: <span>'+ ram + '</span> </p> <br/>'+
-              '<p> Processor: <span> '+ processor + '</span> </p> <br/>'+
-              '<p> Internal Storage: <span>'+ internal +'</span> </p> <br/>'+
-              '</div>'+
-
-              '<p> Product Quantity: <span>'+ prod_quan +'</span> </p> <br/>'+
-              '<p>Price:<span> '+ price +' </span> </p> <br/>'+
-
-           // <!-- <i>More info</i> -->
-              '<p> Extended Storage: <span>'+ ext_stor +'</span> </p> <br/>'+
-              '<p> Product Color: <span>'+ prod_col +'</span> </p> <br/>'+
-              '<p class="desc_css"> Description: '+ desc +' </p> <br/>'+
-
-              
-              '<button class="btn-dark b">Add to Cart</button>';
-              
-let products=document.createElement('div');
-products.classList.add('column');
-products.innerHTML=prods;
-
-
-
-document.getElementById('prod_list').append(products);
-
-
-
-
-// imgname=document.getElementById('namebox').value;
-// firebase.database().ref('pic/'+imgname).on('value',function(snapshot){
-//   document.getElementById('myimg').src= snapshot.val().link;
-// });
-
-
-// document.getElementById('asdf').append(prods);
-// console.log(prods);
-  // document.getElementById('prod_list').innerHTML=prods;
-                
-
-  // list.appendChild(_prod);
-  // list.appendChild(_image);
-  // list.appendChild(_name);  
-  // list.appendChild(_div1);
-  // list.appendChild(_ram);
-  // list.appendChild(_processor);
-  // list.appendChild(_inter_stor);
-  // list.appendChild(_prod_quan);
-  // list.appendChild(_price);
-  // list.appendChild(_ext_stor);
-  // list.appendChild(_prod_col);
-  // list.appendChild(_desc);
-
-
-}
-
-
-const db=getDatabase();
-  function now_fetch(){
-
-    const dbr=ref(db);
-
-         get(child(dbr,'info/'))
-         .then ((snapshot) => {
-             var thedata=[];
-            snapshot.forEach(childSnapshot=>{
-            thedata.push(childSnapshot.val());
-            
-            });
-            // console.log(thedata);
-            
-        getandthrow(thedata);
-        
 
         });
 
-        retr();
-
-  }
-    
-        function getandthrow(thatdata){
-
-thatdata.forEach( element => {
-// console.log(element);
-        add_to_list(element.Pname,element.ram,element.processor,element.internal,element.prod_quan,element.price,element.extended,element.prod_col,element.add_desc,);
+      })
 
     }
-);
+
+    function add_to_list(name, ram, processor, internal, prod_quan, price, ext_stor, prod_col, desc) {
 
 
 
@@ -262,51 +130,192 @@ thatdata.forEach( element => {
 
 
 
-}
-
-
-// function now_fetch(){
-
-//   console.log("check1");
-
-//   firebase.database().ref('info').once('value',function(snapshot){
-//     snapshot.forEach(
-//       function (ChildSnapshot){
-//   console.log("check2");
-
-//         let name= ChildSnapshot.val().Pname;
-//         let add_desc= ChildSnapshot.val().add_desc;
-//         let extended= ChildSnapshot.val().extended;
-//         let internal= ChildSnapshot.val().internal;
-//         let price= ChildSnapshot.val().price;
-//         let processor= ChildSnapshot.val().processor;
-//         let prod_col= ChildSnapshot.val().prod_col;
-//         let prod_quan= ChildSnapshot.val().prod_quan;
-//         let ram= ChildSnapshot.val().ram;
-        
-//         add_to_list(Pname,add_desc,extended,internal,price,processor,prod_col,prod_quan,ram);
-
-//       }
-      
-//     );
-//   });
-
-// }
-
-
-
-window.onload=now_fetch;
 
 
 
 
-</script>
+      // var list=document.getElementById('prod_list');  
+
+      // var _prod=document.createElement('div'); 
+
+      // var _image=document.createElement('img'); 
+
+      // var _name=document.createElement('h3');
+      // var _div1=document.createElement('div');
+
+      // var _ram=document.createElement('p');
+      // var _processor=document.createElement('p');
+      // var _inter_stor=document.createElement('p');
+      // var _prod_quan=document.createElement('p');
+      // var _price=document.createElement('h4');
+      // var _ext_stor=document.createElement('p');
+      // var _prod_col=document.createElement('p');
+      // var _desc=document.createElement('p');
+
+      // _name.innerHTML='Name: '+ name;
+      // _ram.innerHTML='Ram: '+ ram;
+      // _processor.innerHTML='Processor: '+ processor;
+      // _inter_stor.innerHTML='Internal Storage: '+ internal;
+      // _prod_quan.innerHTML='Product quantity: '+ prod_quan;
+      // _price.innerHTML='Price: '+ _price;
+      // _ext_stor.innerHTML='External Storage: '+ ext_stor;
+      // _prod_col.innerHTML='Product Color: '+ prod_col;
+      // _desc.innerHTML='Description: '+ desc;
+
+      console.log(img__NAME + img__URL)
+
+      var prods =
+        '<img src="/images/a20.png" id="img_prod">' +
+        '<label id="img_prodname"></label>' +
+        '<p> Name: <span>' + name + ' </span> </p> <br/>' +
+
+        '<div class="spec"> Product Specification  <br <br/><br/>' +
+        '<p> RAM: <span>' + ram + '</span> </p> <br/>' +
+        '<p> Processor: <span> ' + processor + '</span> </p> <br/>' +
+        '<p> Internal Storage: <span>' + internal + '</span> </p> <br/>' +
+        '</div>' +
+
+        '<p> Product Quantity: <span>' + prod_quan + '</span> </p> <br/>' +
+        '<p>Price:<span> ' + price + ' </span> </p> <br/>' +
+
+        // <!-- <i>More info</i> -->
+        '<p> Extended Storage: <span>' + ext_stor + '</span> </p> <br/>' +
+        '<p> Product Color: <span>' + prod_col + '</span> </p> <br/>' +
+        '<p class="desc_css"> Description: ' + desc + ' </p> <br/>' +
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+        '<button class="btn-dark b">Add to Cart</button>';
+
+      let products = document.createElement('div');
+      products.classList.add('column');
+      products.innerHTML = prods;
+
+
+
+      document.getElementById('prod_list').append(products);
+
+
+
+
+      // imgname=document.getElementById('namebox').value;
+      // firebase.database().ref('pic/'+imgname).on('value',function(snapshot){
+      //   document.getElementById('myimg').src= snapshot.val().link;
+      // });
+
+
+      // document.getElementById('asdf').append(prods);
+      // console.log(prods);
+      // document.getElementById('prod_list').innerHTML=prods;
+
+
+      // list.appendChild(_prod);
+      // list.appendChild(_image);
+      // list.appendChild(_name);  
+      // list.appendChild(_div1);
+      // list.appendChild(_ram);
+      // list.appendChild(_processor);
+      // list.appendChild(_inter_stor);
+      // list.appendChild(_prod_quan);
+      // list.appendChild(_price);
+      // list.appendChild(_ext_stor);
+      // list.appendChild(_prod_col);
+      // list.appendChild(_desc);
+
+
+    }
+
+
+    const db = getDatabase();
+    function now_fetch() {
+
+      const dbr = ref(db);
+
+      get(child(dbr, 'info/'))
+        .then((snapshot) => {
+          var thedata = [];
+          snapshot.forEach(childSnapshot => {
+            thedata.push(childSnapshot.val());
+
+          });
+          // console.log(thedata);
+
+          getandthrow(thedata);
+
+
+        });
+
+      retr();
+
+    }
+
+    function getandthrow(thatdata) {
+
+      thatdata.forEach(element => {
+        // console.log(element);
+        add_to_list(element.Pname, element.ram, element.processor, element.internal, element.prod_quan, element.price, element.extended, element.prod_col, element.add_desc,);
+
+      }
+      );
+
+
+
+
+
+
+
+
+    }
+
+
+    // function now_fetch(){
+
+    //   console.log("check1");
+
+    //   firebase.database().ref('info').once('value',function(snapshot){
+    //     snapshot.forEach(
+    //       function (ChildSnapshot){
+    //   console.log("check2");
+
+    //         let name= ChildSnapshot.val().Pname;
+    //         let add_desc= ChildSnapshot.val().add_desc;
+    //         let extended= ChildSnapshot.val().extended;
+    //         let internal= ChildSnapshot.val().internal;
+    //         let price= ChildSnapshot.val().price;
+    //         let processor= ChildSnapshot.val().processor;
+    //         let prod_col= ChildSnapshot.val().prod_col;
+    //         let prod_quan= ChildSnapshot.val().prod_quan;
+    //         let ram= ChildSnapshot.val().ram;
+
+    //         add_to_list(Pname,add_desc,extended,internal,price,processor,prod_col,prod_quan,ram);
+
+    //       }
+
+    //     );
+    //   });
+
+    // }
+
+
+
+    window.onload = now_fetch;
+
+
+
+
+  </script>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
